@@ -1,0 +1,25 @@
+name: zip src -> manageur.zip
+
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  build-and-zip:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v2
+
+    - name: Zip src -> manageur.zip
+      run: |
+        zip -r manageur.zip src
+        mv manageur.zip $GITHUB_WORKSPACE/
+
+    - name: Upload manageur.zip
+      uses: actions/upload-artifact@v2
+      with:
+        name: src-zip
+        path: $GITHUB_WORKSPACE/manageur.zip
