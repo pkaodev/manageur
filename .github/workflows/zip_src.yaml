@@ -16,9 +16,8 @@ jobs:
     - name: Zip src -> manageur.zip
       run: |
         zip -r manageur.zip src
-        mv manageur.zip manageur-$(date +'%Y%m%d%H%M%S').zip
         
     - name: Upload manageur.zip
       uses: actions/upload-artifact@v2
       with:
-        name: manageur-*.zip
+        name: manageur.zip
