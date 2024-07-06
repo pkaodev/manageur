@@ -1,6 +1,7 @@
 name: zip src -> manageur_setup.zip
 
 on:
+  push:
   pull_request:
     branches:
       - main
@@ -10,7 +11,7 @@ on:
 jobs:
   zip-src:
     runs-on: ubuntu-latest
-    if: github.event.pull_request.merged == true
+    # if: github.event.pull_request.merged == true
     permissions:
       contents: write
 
@@ -26,31 +27,8 @@ jobs:
         git config --global user.email 'github-actions[bot]@users.noreply.github.com'
 
         zip -r manageur_setup.zip src
-        
+
         git add artifact_storage/manageur_setup.zip
         git add manageur_setup.zip
         git commit -m "manageur_setup.zip"
         git push
-        
-    # - name: Upload manageur_setup.zip
-    #   uses: actions/upload-artifact@v2
-    #   with:
-    #     name: manageur_setup.zip
-    #     path: manageur_setup.zip
-
-    # - name: Copy manageur_setup.zip to repo
-    #   run: |
-    #     mkdir -p artifact_storage
-    #     cp manageur_setup.zip artifact_storage/
-    
-    # - name: Commit and push artifact
-    #   env:
-    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    #   run: |
-    #     zip -r manageur_setup.zip src
-    #     git config --global user.name 'github-actions[bot]'
-    #     git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-    #     git add artifact_storage/manageur_setup.zip
-    #     git commit -m "Add manageur_setup.zip to artifact storage"
-    #     git fetch
-    #     git push
