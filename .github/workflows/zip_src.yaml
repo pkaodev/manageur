@@ -22,3 +22,16 @@ jobs:
       with:
         name: manageur.zip
         path: manageur.zip
+
+    - name: Copy manageur.zip to repo
+      run: |
+        mkdir -p artifact_storage
+        cp manageur.zip artifact_storage/
+        
+    - name: Commit and push artifact
+      run: |
+        git config --global user.name 'github-actions[bot]'
+        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+        git add artifact_storage/manageur.zip
+        git commit -m "Add manageur.zip to artifact storage"
+        git push
