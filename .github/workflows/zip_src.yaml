@@ -22,10 +22,13 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        zip -r manageur_setup.zip src
         git config --global user.name 'github-actions[bot]'
         git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+
+        zip -r manageur_setup.zip src
+        
         git add artifact_storage/manageur_setup.zip
+        git add manageur_setup.zip
         git commit -m "manageur_setup.zip"
         git push
         
