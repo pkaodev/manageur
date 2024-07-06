@@ -1,0 +1,4 @@
+source $(dirname "$0")/vars
+source $(dirname "$0")/aliases
+
+PATH="$PATH:$(dirname "$0")/scripts"

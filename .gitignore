@@ -1,2 +1,5 @@
 _NOTES*
 *.zip
+venv
+.venv
+__pycache__
