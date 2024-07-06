@@ -15,11 +15,9 @@ jobs:
 
     - name: Zip src -> manageur.zip
       run: |
-        zip -r manageur.zip src
-        mv manageur.zip $GITHUB_WORKSPACE/
-
+        zip -r manageur-$(date +'%Y-%m-%d-%H-%M-%S').zip src
+        
     - name: Upload manageur.zip
       uses: actions/upload-artifact@v2
       with:
-        name: src-zip
-        path: $GITHUB_WORKSPACE/manageur.zip
+        name: manageur-*.zip
