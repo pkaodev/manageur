@@ -9,8 +9,10 @@ on:
 
 jobs:
   zip-src:
-    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true
+    permissions:
+      contents: write
 
     steps:
     - name: Checkout repo
@@ -32,9 +34,6 @@ jobs:
         cp manageur_setup.zip artifact_storage/
     
     - name: Commit and push artifact
-      permissions:
-        contents: write
-        metadata: write
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
