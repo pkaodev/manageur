@@ -3,5 +3,5 @@
 ## Setup
 
 ```bash
-curl https://raw.githubusercontent.com/pkeraoe/Manageur/main/setup.sh | bash
+curl https://raw.githubusercontent.com/pkaodev/Manageur/main/setup.sh | bash
 ```
