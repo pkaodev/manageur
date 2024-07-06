@@ -5,7 +5,7 @@ on:
     types: [closed]
 
 jobs:
-  build-and-zip:
+  zip-src:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
 
@@ -15,7 +15,8 @@ jobs:
 
     - name: Zip src -> manageur.zip
       run: |
-        zip -r manageur-$(date +'%Y-%m-%d-%H-%M-%S').zip src
+        zip -r manageur.zip src
+        mv manageur.zip manageur-$(date +'%Y%m%d%H%M%S').zip
         
     - name: Upload manageur.zip
       uses: actions/upload-artifact@v2
