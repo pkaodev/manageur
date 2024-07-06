@@ -11,7 +11,7 @@ on:
 jobs:
   zip-src:
     runs-on: ubuntu-latest
-    # if: github.event.pull_request.merged == true
+    if: github.event.pull_request.merged == true
     permissions:
       contents: write
 
@@ -26,6 +26,7 @@ jobs:
         git config --global user.name 'github-actions[bot]'
         git config --global user.email 'github-actions[bot]@users.noreply.github.com'
 
+        rm -f manageur_setup.zip || true
         zip -r manageur_setup.zip src
 
         git add artifact_storage/manageur_setup.zip
