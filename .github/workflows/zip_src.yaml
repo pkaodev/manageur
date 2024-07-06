@@ -29,7 +29,6 @@ jobs:
         rm -f manageur_setup.zip || true
         zip -r manageur_setup.zip src
 
-        git add artifact_storage/manageur_setup.zip
         git add manageur_setup.zip
         git commit -m "manageur_setup.zip"
         git push
