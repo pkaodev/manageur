@@ -1,4 +1,4 @@
-name: zip src -> manageur.zip
+name: zip src -> manageur_setup.zip
 
 on:
   pull_request:
@@ -13,25 +13,21 @@ jobs:
     - name: Checkout repo
       uses: actions/checkout@v2
 
-    - name: Zip src -> manageur.zip
+    - name: Zip src -> manageur_setup.zip
       run: |
-        zip -r manageur.zip src
+        zip -r manageur_setup.zip src
         
-    - name: Upload manageur.zip
+    - name: Upload manageur_setup.zip
       uses: actions/upload-artifact@v2
       with:
-        name: manageur.zip
-        path: manageur.zip
+        name: manageur_setup.zip
+        path: manageur_setup.zip
 
-    - name: Copy manageur.zip to repo
+    - name: Copy manageur_setup.zip to repo
       run: |
         mkdir -p artifact_storage
-        cp manageur.zip artifact_storage/
+        cp manageur_setup.zip artifact_storage/
         
-    - name: Commit and push artifact
-      run: |
-        git config --global user.name 'github-actions[bot]'
-        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-        git add artifact_storage/manageur.zip
-        git commit -m "Add manageur.zip to artifact storage"
-        git push
+    - uses: stefanzweifel/git-auto-commit-action@v5
+      with:
+        commit_message: "Add manageur_setup.zip"
