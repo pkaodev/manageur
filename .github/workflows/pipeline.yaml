@@ -6,21 +6,23 @@ on:
       - '**'
   pull_request:
     branches:
-      - main
+      - '**'
 
 jobs:
   test:
     runs-on: ubuntu-latest
-    if: github.event_name == 'push'
     steps:
     - name: Checkout repo
       uses: actions/checkout@v2
 
+    - name: Run tests
+      run: |
+        # TODO
+
   build-and-zip:
     runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request' && github.event.pull_request.merged == true && github.ref == 'refs/heads/main'
+    if: github.event_name == 'push' && github.event.ref == 'refs/heads/main' && github.event.head_commit.message == 'Merge pull request*'
     needs: test
-
     steps:
     - name: Checkout repo
       uses: actions/checkout@v2
@@ -28,10 +30,10 @@ jobs:
     - name: Zip src -> manageur.zip
       run: |
         zip -r manageur.zip src
-        mv src.zip $GITHUB_WORKSPACE/
+        mv manageur.zip $GITHUB_WORKSPACE/
     
     - name: Upload manageur.zip
       uses: actions/upload-artifact@v2
       with:
         name: src-zip
-        path: $GITHUB_WORKSPACE/src.zip
+        path: $GITHUB_WORKSPACE/manageur.zip
