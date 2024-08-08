@@ -6,10 +6,14 @@ from modules import all_widgets
 MAX_WIDTH_WIDGET = 150
 MAX_HEIGHT_WIDGET = 150
 
+# TODO global manageur config file
+
 # TODO two widget subclasses - do something from main window, or switch to new window (link to other widget)
 # TODO ctrl + click back/new window will open in new window
 # TODO log widget
 # TODO replace dock with this
+class OptionsOrBackButtonWidget(QWidget):
+    pass
 
 class LoggerWidget(QWidget):
     pass
@@ -22,7 +26,6 @@ class ToolbarWidget(QWidget):
 class MainWindow(QWidget):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("Manageur")
         
         # TODO window size adjustable
         self.layout = QVBoxLayout(self)
