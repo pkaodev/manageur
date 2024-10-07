@@ -1,5 +1,5 @@
 # Manageur
-
+<!-- TODO on start compare repo-aliasess, repo-bashrc with real-aliases, real..... -> can save (new branch commit) -->
 ## Installation
 
 
